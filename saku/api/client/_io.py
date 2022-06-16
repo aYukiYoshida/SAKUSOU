@@ -6,6 +6,28 @@ from typing import Any, Dict, Optional, Union
 import yaml
 
 
+def is_json(s: str) -> bool:
+    '''verify the string is in valid json format
+    '''
+    try:
+        json.loads(s)
+    except json.JSONDecodeError:
+        return False
+    else:
+        return True
+
+
+def is_yaml(s: str) -> bool:
+    '''verify the string is in valid yaml format
+    '''
+    try:
+        yaml.safe_load(s)
+    except yaml.YAMLError:
+        return False
+    else:
+        return True
+
+
 def read_json(file_path: Union[str, pathlib.Path]) -> Dict[str, Any]:
     if isinstance(file_path, pathlib.Path):
         file_path = file_path.as_posix()
