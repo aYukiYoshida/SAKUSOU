@@ -54,10 +54,6 @@ class ApiClient(object, metaclass=ABCMeta):
         return os.path.join(*paths)
 
     @classmethod
-    def to_snake_case(cls, text: str) -> Union[str, Any]:
-        return str_to_snake_case(text)
-
-    @classmethod
     def convert_to_camel_case_keys(cls, body: Dict[str, Any]) -> Dict[str, Any]:
         return {str_to_camel_case(key) if '_' in key else key: value
                 for key, value in body.items()}
